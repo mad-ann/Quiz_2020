@@ -68,16 +68,70 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Form1_indito.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1_indito.Designer.cs">
+      <DependentUpon>Form1_indito.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1_Osszegzo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1_Osszegzo.Designer.cs">
+      <DependentUpon>Form1_Osszegzo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Login.Designer.cs">
+      <DependentUpon>Form_Login.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_Nyito.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form_Nyito.Designer.cs">
       <DependentUpon>Form_Nyito.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_Profil.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Profil.Designer.cs">
+      <DependentUpon>Form_Profil.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Quiz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Quiz.Designer.cs">
+      <DependentUpon>Form_Quiz.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Reg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Reg.Designer.cs">
+      <DependentUpon>Form_Reg.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1_indito.resx">
+      <DependentUpon>Form1_indito.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1_Osszegzo.resx">
+      <DependentUpon>Form1_Osszegzo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Login.resx">
+      <DependentUpon>Form_Login.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form_Nyito.resx">
       <DependentUpon>Form_Nyito.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Profil.resx">
+      <DependentUpon>Form_Profil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Quiz.resx">
+      <DependentUpon>Form_Quiz.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Reg.resx">
+      <DependentUpon>Form_Reg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
