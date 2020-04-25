@@ -31,5 +31,10 @@ namespace Quiz_2020
                 Application.Exit();
             }
         }
+
+        private void Form1_Osszegzo_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

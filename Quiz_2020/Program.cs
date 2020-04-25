@@ -7,88 +7,7 @@ using MySql.Data.MySqlClient;
 
 namespace Quiz_2020
 {
-   
-    
-
-    public class Kategoria
-    {
-        private List<Kategoria> kategoriak;
-
-        public int id
-        {
-            get { return id; }
-            set { id = value; }
-        }
-
-        public string megnevezes
-        {
-            get { return megnevezes; }
-            set { megnevezes = value; }
-        }
-
-        public List<Kategoria> Kategoriak { get; set; }
-
-    }
-
-   
-
-    public class Kerdes
-    {
-        public int id {
-            get { return id; }
-            set { id = value; }
-        }
-
-        public string szoveg {
-            get { return szoveg; }
-            set { szoveg = value; }
-        }
-
-        public int kategoria_id
-        {
-            get { return kategoria_id; }
-            set { kategoria_id = value; }
-        }
-
-        /*public List<Kerdes> kerdesek { get; set; }
-        int k;
-        Random rand = new Random();
-
-        public Kerdes()
-        {
-            kerdesek = new List<Kerdes>;
-            k = 0;
-        }
-        public Kerdes GetKerdes()
-        {
-            int k = rand.Next() % Kerdes.Count;
-            return Kerdes[k];
-        }*/
-    }
-
-    public class Valasz
-    {
-        public int id
-        {
-            get { return id; }
-            set { id = value; }
-        }
-
-        public int kerdes_id
-        {
-            get { return kerdes_id; }
-            set { kerdes_id = value; }
-        }
-        public int valasz
-        {
-            get { return valasz; }
-            set { valasz = value; }
-        }
-
-        public enum helyes { };
-
-    }
-
+  
     static class Program
     {
         /// <summary>
@@ -104,9 +23,16 @@ namespace Quiz_2020
         public static Form form_login = null;
         public static Form form_profil = null;
         public static Form form_quiz = null;
+        public static Form form_reg = null;
         public static Form form_regisztracio = null;
         public static Form form_osszegzo = null;
         public static Form form_indito = null;
+        public static List<Kategoria> kategoria = new List<Kategoria>();
+        public static List<User> felhasznalok = new List<User>();
+        public static List<Kviz> kerdesek = new List<Kviz>();
+        public static List<Kviz> valaszok = new List<Kviz>();
+        public static Kategoria Valasztott_kategoria;
+        public static User user;
 
         static void Main()
         {
@@ -114,13 +40,16 @@ namespace Quiz_2020
             sb.Server = "localhost";
             sb.UserID = "root";
             sb.Password = "";
-            sb.Database = "quizz";
+            sb.Database = "bioquiz";
             sb.CharacterSet = "UTF8";
             conn = new MySqlConnection(sb.ToString());
             try
             {
                 conn.Open(); 
                 sql = conn.CreateCommand();
+                KategoriaBetolt();
+                //Felhasznalobetolt();
+                
             }
             catch (MySqlException ex)
             {
@@ -136,12 +65,41 @@ namespace Quiz_2020
             form_login = new Form_Login();
             form_nyito = new Form_Nyito();
             form_profil = new Form_Profil();
-            form_profil = new Form_Quiz();
-            form_profil = new Form_Reg();
-            form_profil = new Form1_Osszegzo();
+            form_quiz = new Form_Quiz();
+            form_reg = new Form_Reg();
+            form_osszegzo = new Form1_Osszegzo();
             form_indito = new Form1_indito();
 
             Application.Run(form_nyito);
         }
+
+
+        static void KategoriaBetolt()
+        {
+            sql.CommandText = "SELECT `id`,`megnevezes` FROM `kategoriak`";
+            using (MySqlDataReader dr = sql.ExecuteReader())
+            {
+                while (dr.Read())
+                {
+                    kategoria.Add(new Kategoria(dr.GetInt32("id"), dr.GetString("megnevezes")));
+                }
+            }
+
+        }
+
+        /*static void Felhasznalobetolt()
+        {
+            sql.CommandText = "SELECT `id`,`nev`,`felhasznalonev`," +
+                "`jelszo`,`pontszam`,`szuletesi_ido`,`email` FROM `user`";
+            using (MySqlDataReader dr = sql.ExecuteReader())
+            {
+                while (dr.Read())
+                {
+                    felhasznalok.Add(new User(dr.GetInt32("id"), dr.GetString("nev"),
+                         dr.GetString("felhasznalonev"), dr.GetInt32("pontszam"), dr.GetString("email"), dr.GetDateTime("szulido")));
+                }
+            }
+        }*/
+
     }
 }

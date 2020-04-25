@@ -17,10 +17,6 @@ namespace Quiz_2020
         {
             InitializeComponent();
         }
-
-        
-
-
         private void kezdolapToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -41,15 +37,12 @@ namespace Quiz_2020
 
         private void mikrobiologiaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult ablak = MessageBox.Show("A kvíz elindul az OK gomb megnoymása után. A kvíz 30 másodperces. Biztonsan készen áll? ", "", MessageBoxButtons.OKCancel);
-            if (ablak.ToString() == "Yes")
+            Program.Valasztott_kategoria = Program.kategoria[0];
+            
+            if (DialogResult.OK == MessageBox.Show("A kvíz elindul az OK gomb megnyomása után. A kvíz 30 másodperces. Biztonsan készen áll? ", "", MessageBoxButtons.OKCancel))
             {
-                AB ab = new AB();
-                MySqlCommand command = new MySqlCommand("INSERT INTO `kategoriak`(`id`, `megnevezes`) VALUES (@id, @kategoria)", ab.GetConnection());
-                
-
-                this.Hide();
-                Program.form_indito.Show();
+               this.Hide();
+               Program.form_indito.Show();
             }
             else
             {
@@ -60,8 +53,8 @@ namespace Quiz_2020
 
         private void immunologiaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult ablak = MessageBox.Show("A kvíz elindul az OK gomb megnoymása után. A kvíz 30 másodperces. Biztonsan készen áll? ", "", MessageBoxButtons.OKCancel);
-            if (ablak.ToString() == "Yes")
+            Program.Valasztott_kategoria = Program.kategoria[1];
+            if (DialogResult.OK == MessageBox.Show("A kvíz elindul az OK gomb megnyomása után. A kvíz 30 másodperces. Biztonsan készen áll? ", "", MessageBoxButtons.OKCancel))
             {
                 this.Hide();
                 Program.form_indito.Show();
@@ -75,8 +68,8 @@ namespace Quiz_2020
 
         private void biokemiaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult ablak = MessageBox.Show("A kvíz elindul az OK gomb megnoymása után. A kvíz 30 másodperces. Biztonsan készen áll? ", "", MessageBoxButtons.OKCancel);
-            if (ablak.ToString() == "Yes")
+            Program.Valasztott_kategoria = Program.kategoria[2];
+            if (DialogResult.OK == MessageBox.Show("A kvíz elindul az OK gomb megnyomása után. A kvíz 30 másodperces. Biztonsan készen áll? ", "", MessageBoxButtons.OKCancel))
             {
                 this.Hide();
                 Program.form_indito.Show();
@@ -90,8 +83,8 @@ namespace Quiz_2020
 
         private void novenyrendszertanToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult ablak = MessageBox.Show("A kvíz elindul az OK gomb megnoymása után. A kvíz 30 másodperces. Biztonsan készen áll? ", "", MessageBoxButtons.OKCancel);
-            if (ablak.ToString() == "Yes")
+            Program.Valasztott_kategoria = Program.kategoria[3];
+            if (DialogResult.OK == MessageBox.Show("A kvíz elindul az OK gomb megnyomása után. A kvíz 30 másodperces. Biztonsan készen áll? ", "", MessageBoxButtons.OKCancel))
             {
                 this.Hide();
                 Program.form_indito.Show();
@@ -101,6 +94,41 @@ namespace Quiz_2020
                 this.Hide();
                 Program.form_profil.Show();
             }
+        }
+
+        private void kategoriakToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mikrobiologiaToolStripMenuItem.Selected)
+            {
+                    
+            }
+        }
+
+        private void Form_Profil_Load(object sender, EventArgs e)
+        {
+            AdatokBetolt();
+        }
+
+        void AdatokBetolt()
+        {
+            Program.sql.CommandText = "SELECT user.id, user.nev, user.felhasznalonev," +
+                " user.pontszam, user.szuletesi_ido, user.email FROM user WHERE `user.id`=@user_id" +
+                "`user.felhasznalonev`=@fnev";
+            
+            Program.sql.Parameters.Clear();
+
+            Program.sql.Parameters.AddWithValue("@fnev", Program.user);
+
+            try
+            {
+               
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message + "Kérdések betöltése nem sikerült.");
+                return;
+            }
+
         }
     }
 }

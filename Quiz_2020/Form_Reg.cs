@@ -12,91 +12,101 @@ using MySql.Data.MySqlClient;
 
 namespace Quiz_2020
 {
+    
     public partial class Form_Reg : Form
     {
+        
         public Form_Reg()
         {
             InitializeComponent();
         }
 
+        
         private void button_reg_Click(object sender, EventArgs e)
         {
             //új felhasználó regisztrálása
 
-            
-            MySqlCommand command = new MySqlCommand("INSERT INTO `user`(`nev`, `felhasznalonev`," +
-                " `jelszo`,`neme`, `szuletesi_ido`, `email`) " +
-                "VALUES (@nev, @fnev, @jelszo, @neme, @szulido, @email)", ab.GetConnection());
-               
-            command.Parameters.Add("@nev", MySqlDbType.VarChar).Value = textBox_nev.Text;
-            command.Parameters.Add("@fnev", MySqlDbType.VarChar).Value = textBox_fnev.Text;
-            command.Parameters.Add("@jelszo", MySqlDbType.VarChar).Value = textBox_jelszo.Text;
+            string nev = textBox_nev.Text;
+            string fnev = textBox_fnev.Text;
+            string email = textBox_email.Text;
+            string jelszo = textBox_jelszo.Text;
+            DateTime szulido = dateTimePicker_szulido.Value;
+
+
+            Program.sql.CommandText = "INSERT INTO user ( `nev` ,`felhasznalonev`, `jelszo`, " +
+                "`neme`, `szuletesi_ido`, `email`) VALUES ( @nev, @fnev, @jelszo, " +
+                "@neme, @szulido, @email);";
+
+            Program.sql.Parameters.Clear();
+            Program.sql.Parameters.AddWithValue("@nev", nev);
+            Program.sql.Parameters.AddWithValue("@fnev", fnev);
+            Program.sql.Parameters.AddWithValue("@email", email);
+            Program.sql.Parameters.AddWithValue("@jelszo", jelszo);
+            Program.sql.Parameters.AddWithValue("@szulido", szulido);
 
             if (radioButton_ffi.Checked)
             {
-                command.Parameters.Add("@neme", MySqlDbType.Enum).Value = 'F';
+                Program.sql.Parameters.AddWithValue("@neme", "F");
             }
             else
             {
-                command.Parameters.Add("@neme", MySqlDbType.Enum).Value = 'N';
+                Program.sql.Parameters.AddWithValue("@neme", "N");
             }
-            
 
-            command.Parameters.Add("@szulido", MySqlDbType.DateTime).Value = dateTimePicker_szulido.Value;
-            command.Parameters.Add("@email", MySqlDbType.VarChar).Value = textBox_email.Text;
-            
-
-            //konnektor kapcsolás
-            ab.openConnection();
-            command.ExecuteNonQuery();
-
-            if (!checkKitoltes())
+            try
             {
-                if (checkFelhasznalonev())
-                {
-                    DialogResult letezik = MessageBox.Show("Ez a felhasználónév már létezik", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-                else
-                {
-                    //MessageBox.Show("Sikeres regisztráció");
-                    this.Hide();
-                    Program.form_nyito.Show();
-                }
+                Program.sql.ExecuteNonQuery();
             }
-            else
+            catch (MySqlException ex)
             {
-                MessageBox.Show("Minden mezőt ki kell töltenie a sikeres regisztrációhoz!"); 
+                MessageBox.Show(ex.Message + "Sikertelen a regisztráció"); //1062 duplicates
+                return;
             }
             
 
-            //konnektor megszakítása
-            ab.closeConnection();
+            //ellenorzesek
+
+            /* if (!checkKitoltes())
+             {
+                 if (checkFelhasznalonev())
+                 {
+                     DialogResult letezik = MessageBox.Show("Ez a felhasználónév már létezik", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                 }
+                 else
+                 {
+
+                     this.Hide();
+                     Program.form_profil.Show();
+                 }
+             }
+             else
+             {
+                 MessageBox.Show("Minden mezőt ki kell töltenie a sikeres regisztrációhoz!"); 
+             }*/
         }
 
         //a felhasználó nevet használja-e már valaki
-        public Boolean checkFelhasznalonev()
+        /*public Boolean checkFelhasznalonev()
         {
-            
+           string felhasznalonev = textBox_fnev.Text.Trim();
+           
+           Program.sql.CommandText = "SELECT `felhasznalonev` FROM `user`;";
 
-            string felhasznalonev = textBox_fnev.Text;
-
-
-             Program.sql.CommandText ="SELECT * FROM `user` WHERE `felhasznalonev`= @fnev";
-
-            Program.sql.Parameters.AddWithValue("@fnev", felhasznalonev);
-            using (MySqlDataReader dr=Program.sql.ExecuteReader())
-            {
+           Program.sql.Parameters.AddWithValue("@fnev", felhasznalonev);
+           using (MySqlDataReader dr = Program.sql.ExecuteReader())
+           {
                 if (dr.Read())
                 {
-                    return true;
+                    
+                        return true;
+                    
                 }
                 else
                 {
                     return false;
                 }
-            }
-           
-        }
+           }  
+        }*/
 
         //ellenorzés, hogy minden ki van-e töltve
         public Boolean checkKitoltes()
@@ -109,16 +119,17 @@ namespace Quiz_2020
 
             if (nev.Equals("") || fnev.Equals("") || jelszo.Equals("")||email.Equals("") || szulido.Equals(""))
             {
-                return false;
+                return true;
             }
-            else { return true; }
+            else { return false; }
         }
         private void kezdolapToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DialogResult valasz = MessageBox.Show("Biztos félbeszakítja a regisztrációt? Félbeszakítás esetén az adatai el fognak veszni.", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (valasz.ToString() == "Yes")
             {
-                Application.Exit();
+                this.Hide();
+                Program.form_nyito.Show();
             }
         }
 
@@ -159,6 +170,11 @@ namespace Quiz_2020
 
         private void radioButton_no_CheckedChanged(object sender, EventArgs e)
         {
+        }
+
+        private void Form_Reg_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

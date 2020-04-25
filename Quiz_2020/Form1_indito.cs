@@ -19,15 +19,17 @@ namespace Quiz_2020
 
         private void button_megsem_Click(object sender, EventArgs e)
         {
-          this.Hide();
-          Program.form_nyito.Show(); 
+            this.Hide();
+            Program.form_nyito.Show();
         }
 
         private void button_ok_Click(object sender, EventArgs e)
         {
-           
+
             this.Hide();
-            Program.form_quiz.Show();
+            Program.form_quiz.ShowDialog();
         }
+
+        
     }
 }

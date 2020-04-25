@@ -22,35 +22,33 @@ namespace Quiz_2020
 
         private void button_belepes_Click(object sender, EventArgs e)
         {
-            AB ab = new AB();
-
             string felhasznalonev = textBox_fnev.Text;
             string jelszo = textBox_password.Text;
 
-            DataTable table = new DataTable();
-            MySqlDataAdapter adapter = new MySqlDataAdapter();
-            MySqlCommand command = new MySqlCommand("SELECT * FROM `user` WHERE `felhasznalonev`= @fnev AND `jelszo`= @jelszo", ab.GetConnection());
-            
-            command.Parameters.Add("@fnev", MySqlDbType.VarChar).Value = felhasznalonev;
-            command.Parameters.Add("@jelszo", MySqlDbType.VarChar).Value = jelszo;
+            Program.sql.CommandText ="SELECT * FROM `user` WHERE `felhasznalonev`= @fnev AND `jelszo`= @jelszo;";
 
-            adapter.SelectCommand = command;
-            adapter.Fill(table);
+            Program.sql.Parameters.Clear();
+            Program.sql.Parameters.AddWithValue("@fnev", felhasznalonev);
+            Program.sql.Parameters.AddWithValue("@jelszo", jelszo);
 
-            if (table.Rows.Count > 0)
+            using (MySqlDataReader dr = Program.sql.ExecuteReader())
             {
-                /*amennyiben létezik és helyes adatokat adott meg a felhasználó,
-                akkor átirányitja a profil oldalra a felhasználót a program.*/
-                this.Hide();
-                Program.form_profil.Show();
+                if (dr.FieldCount > 0)
+                {
+                    /*amennyiben létezik és helyes adatokat adott meg a felhasználó,
+                    akkor átirányitja a profil oldalra a felhasználót a program.*/
+                    this.Hide();
+                    Program.form_profil.Show();
+                }
+                else
+                {
+                    /*amennyiben nincs megfelelő adat, vagy nincsenek kitöltve a mezők,
+                                     egy felugró ablak figyelmeztet.*/
+                    DialogResult figy = MessageBox.Show("Érvénytelen felhasználónév vagy jelszó", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             
-                /*amennyiben nincs megfelelő adat, vagy nincsenek kitöltve a mezők,
-                 egy felugró ablak figyelmeztet.*/            
-            else
-            {
-                DialogResult figy = MessageBox.Show("Érvénytelen felhasználónév vagy jelszó", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            
         }
 
         private void kezdolapToolStripMenuItem_Click(object sender, EventArgs e)
@@ -60,6 +58,11 @@ namespace Quiz_2020
         }
 
         private void textBox_fnev_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form_Login_Load(object sender, EventArgs e)
         {
 
         }
