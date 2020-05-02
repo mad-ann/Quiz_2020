@@ -69,11 +69,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Kategoria.cs" />
-    <Compile Include="Form1_indito.cs">
+    <Compile Include="Form_indito.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1_indito.Designer.cs">
-      <DependentUpon>Form1_indito.cs</DependentUpon>
+    <Compile Include="Form_indito.Designer.cs">
+      <DependentUpon>Form_indito.cs</DependentUpon>
     </Compile>
     <Compile Include="Form1_Osszegzo.cs">
       <SubType>Form</SubType>
@@ -117,8 +117,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Valasz.cs" />
-    <EmbeddedResource Include="Form1_indito.resx">
-      <DependentUpon>Form1_indito.cs</DependentUpon>
+    <EmbeddedResource Include="Form_indito.resx">
+      <DependentUpon>Form_indito.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1_Osszegzo.resx">
       <DependentUpon>Form1_Osszegzo.cs</DependentUpon>

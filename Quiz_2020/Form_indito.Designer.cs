@@ -1,6 +1,6 @@
 ﻿namespace Quiz_2020
 {
-    partial class Form1_indito
+    partial class Form_indito
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1_indito));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_indito));
             this.button_ok = new System.Windows.Forms.Button();
             this.button_megsem = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();

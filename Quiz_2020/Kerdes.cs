@@ -11,12 +11,14 @@ namespace Quiz_2020
         int id;
         string szoveg;
         int kategoria_id;
+        bool helyes = false;
         List<Valasz> valaszok = new List<Valasz>();
         public int Id { get => id; set => id = value; }
         public string Szoveg { get => szoveg; set => szoveg = value; }
 
         public int Kategoria_id { get => kategoria_id; set => kategoria_id = value; }
         public List<Valasz> Valaszok { get => valaszok; set => valaszok = value; }
+        public bool Helyes { get => helyes; set => helyes = value; }
 
         public Kerdes(int id, string szoveg, int kategoria_id)
         {
@@ -30,9 +32,5 @@ namespace Quiz_2020
             return $"{szoveg}";
         }
 
-        public void AddValasz(Valasz valasz)
-        {
-            valaszok.Add(valasz);
-        }
     }
 }

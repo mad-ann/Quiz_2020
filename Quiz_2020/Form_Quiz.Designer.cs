@@ -52,11 +52,11 @@
             this.textBox_kerdes.BackColor = System.Drawing.Color.LightSlateGray;
             this.textBox_kerdes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox_kerdes.Font = new System.Drawing.Font("Tw Cen MT", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox_kerdes.Location = new System.Drawing.Point(97, 115);
+            this.textBox_kerdes.Location = new System.Drawing.Point(97, 101);
             this.textBox_kerdes.Multiline = true;
             this.textBox_kerdes.Name = "textBox_kerdes";
             this.textBox_kerdes.ReadOnly = true;
-            this.textBox_kerdes.Size = new System.Drawing.Size(467, 34);
+            this.textBox_kerdes.Size = new System.Drawing.Size(467, 59);
             this.textBox_kerdes.TabIndex = 2;
             // 
             // radioButton_valasz_A
@@ -135,6 +135,7 @@
             this.button_tovabb.TabIndex = 10;
             this.button_tovabb.Text = "Tovább";
             this.button_tovabb.UseVisualStyleBackColor = false;
+            this.button_tovabb.Click += new System.EventHandler(this.button_tovabb_Click);
             // 
             // button_befejezes
             // 
@@ -151,7 +152,7 @@
             // timer1
             // 
             this.timer1.Enabled = true;
-            this.timer1.Interval = 300;
+            this.timer1.Interval = 10000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // groupBox_Valaszok

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Quiz_2020
 {
-    public partial class Form1_indito : Form
+    public partial class Form_indito : Form
     {
-        public Form1_indito()
+        public Form_indito()
         {
             InitializeComponent();
         }

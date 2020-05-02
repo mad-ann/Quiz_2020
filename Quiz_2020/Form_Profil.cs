@@ -54,7 +54,8 @@ namespace Quiz_2020
         private void immunologiaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Program.Valasztott_kategoria = Program.kategoria[1];
-            if (DialogResult.OK == MessageBox.Show("A kvíz elindul az OK gomb megnyomása után. A kvíz 30 másodperces. Biztonsan készen áll? ", "", MessageBoxButtons.OKCancel))
+            if (DialogResult.OK == MessageBox.Show("A kvíz elindul az OK gomb megnyomása után. " +
+                "A kvíz 30 másodperces. Biztonsan készen áll? ", "", MessageBoxButtons.OKCancel))
             {
                 this.Hide();
                 Program.form_indito.Show();
@@ -106,10 +107,11 @@ namespace Quiz_2020
 
         private void Form_Profil_Load(object sender, EventArgs e)
         {
-            AdatokBetolt();
+            //AdatokBetolt();
+            Program.form_profil.Show();
         }
 
-        void AdatokBetolt()
+        /*public void AdatokBetolt()
         {
             Program.sql.CommandText = "SELECT user.id, user.nev, user.felhasznalonev," +
                 " user.pontszam, user.szuletesi_ido, user.email FROM user WHERE `user.id`=@user_id" +
@@ -128,6 +130,11 @@ namespace Quiz_2020
                 MessageBox.Show(ex.Message + "Kérdések betöltése nem sikerült.");
                 return;
             }
+
+        }*/
+
+        private void label1_Click(object sender, EventArgs e)
+        {
 
         }
     }

@@ -47,9 +47,7 @@ namespace Quiz_2020
             {
                 conn.Open(); 
                 sql = conn.CreateCommand();
-                KategoriaBetolt();
-                //Felhasznalobetolt();
-                
+                KategoriaBetolt();    
             }
             catch (MySqlException ex)
             {
@@ -68,7 +66,7 @@ namespace Quiz_2020
             form_quiz = new Form_Quiz();
             form_reg = new Form_Reg();
             form_osszegzo = new Form1_Osszegzo();
-            form_indito = new Form1_indito();
+            form_indito = new Form_indito();
 
             Application.Run(form_nyito);
         }
@@ -86,20 +84,5 @@ namespace Quiz_2020
             }
 
         }
-
-        /*static void Felhasznalobetolt()
-        {
-            sql.CommandText = "SELECT `id`,`nev`,`felhasznalonev`," +
-                "`jelszo`,`pontszam`,`szuletesi_ido`,`email` FROM `user`";
-            using (MySqlDataReader dr = sql.ExecuteReader())
-            {
-                while (dr.Read())
-                {
-                    felhasznalok.Add(new User(dr.GetInt32("id"), dr.GetString("nev"),
-                         dr.GetString("felhasznalonev"), dr.GetInt32("pontszam"), dr.GetString("email"), dr.GetDateTime("szulido")));
-                }
-            }
-        }*/
-
     }
 }

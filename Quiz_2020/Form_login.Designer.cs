@@ -42,6 +42,7 @@
             this.immunológiaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.biokémiaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.súgóToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.növényrendszertanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -137,7 +138,8 @@
             this.kategóriákToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mikrobiológiaToolStripMenuItem,
             this.immunológiaToolStripMenuItem,
-            this.biokémiaToolStripMenuItem});
+            this.biokémiaToolStripMenuItem,
+            this.növényrendszertanToolStripMenuItem});
             this.kategóriákToolStripMenuItem.Name = "kategóriákToolStripMenuItem";
             this.kategóriákToolStripMenuItem.Size = new System.Drawing.Size(75, 20);
             this.kategóriákToolStripMenuItem.Text = "Kategóriák";
@@ -145,19 +147,19 @@
             // mikrobiológiaToolStripMenuItem
             // 
             this.mikrobiológiaToolStripMenuItem.Name = "mikrobiológiaToolStripMenuItem";
-            this.mikrobiológiaToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.mikrobiológiaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.mikrobiológiaToolStripMenuItem.Text = "Mikrobiológia";
             // 
             // immunológiaToolStripMenuItem
             // 
             this.immunológiaToolStripMenuItem.Name = "immunológiaToolStripMenuItem";
-            this.immunológiaToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.immunológiaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.immunológiaToolStripMenuItem.Text = "Immunológia";
             // 
             // biokémiaToolStripMenuItem
             // 
             this.biokémiaToolStripMenuItem.Name = "biokémiaToolStripMenuItem";
-            this.biokémiaToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.biokémiaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.biokémiaToolStripMenuItem.Text = "Biokémia";
             // 
             // súgóToolStripMenuItem
@@ -165,6 +167,12 @@
             this.súgóToolStripMenuItem.Name = "súgóToolStripMenuItem";
             this.súgóToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.súgóToolStripMenuItem.Text = "Súgó";
+            // 
+            // növényrendszertanToolStripMenuItem
+            // 
+            this.növényrendszertanToolStripMenuItem.Name = "növényrendszertanToolStripMenuItem";
+            this.növényrendszertanToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.növényrendszertanToolStripMenuItem.Text = "Növényrendszertan";
             // 
             // Form_Login
             // 
@@ -202,5 +210,6 @@
         private System.Windows.Forms.ToolStripMenuItem immunológiaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem biokémiaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem súgóToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem növényrendszertanToolStripMenuItem;
     }
 }

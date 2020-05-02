@@ -24,8 +24,6 @@ namespace Quiz_2020
         
         private void button_reg_Click(object sender, EventArgs e)
         {
-            //új felhasználó regisztrálása
-
             string nev = textBox_nev.Text;
             string fnev = textBox_fnev.Text;
             string email = textBox_email.Text;
@@ -62,53 +60,7 @@ namespace Quiz_2020
                 MessageBox.Show(ex.Message + "Sikertelen a regisztráció"); //1062 duplicates
                 return;
             }
-            
-
-            //ellenorzesek
-
-            /* if (!checkKitoltes())
-             {
-                 if (checkFelhasznalonev())
-                 {
-                     DialogResult letezik = MessageBox.Show("Ez a felhasználónév már létezik", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                 }
-                 else
-                 {
-
-                     this.Hide();
-                     Program.form_profil.Show();
-                 }
-             }
-             else
-             {
-                 MessageBox.Show("Minden mezőt ki kell töltenie a sikeres regisztrációhoz!"); 
-             }*/
         }
-
-        //a felhasználó nevet használja-e már valaki
-        /*public Boolean checkFelhasznalonev()
-        {
-           string felhasznalonev = textBox_fnev.Text.Trim();
-           
-           Program.sql.CommandText = "SELECT `felhasznalonev` FROM `user`;";
-
-           Program.sql.Parameters.AddWithValue("@fnev", felhasznalonev);
-           using (MySqlDataReader dr = Program.sql.ExecuteReader())
-           {
-                if (dr.Read())
-                {
-                    
-                        return true;
-                    
-                }
-                else
-                {
-                    return false;
-                }
-           }  
-        }*/
-
-        //ellenorzés, hogy minden ki van-e töltve
         public Boolean checkKitoltes()
         {
             string nev = textBox_nev.Text;
@@ -123,6 +75,8 @@ namespace Quiz_2020
             }
             else { return false; }
         }
+
+
         private void kezdolapToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DialogResult valasz = MessageBox.Show("Biztos félbeszakítja a regisztrációt? Félbeszakítás esetén az adatai el fognak veszni.", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);

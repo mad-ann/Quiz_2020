@@ -8,7 +8,6 @@ namespace Quiz_2020
 {
     class Kategoria
     {
-        //kategoria adatok
         int id;
         string megnevezes;
 

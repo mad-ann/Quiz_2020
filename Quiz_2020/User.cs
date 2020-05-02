@@ -8,7 +8,6 @@ namespace Quiz_2020
 {
     class User
     {
-
         int id;
         string nev;
         string felhasznalonev;

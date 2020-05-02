@@ -25,31 +25,29 @@ namespace Quiz_2020
             string felhasznalonev = textBox_fnev.Text;
             string jelszo = textBox_password.Text;
 
-            Program.sql.CommandText ="SELECT * FROM `user` WHERE `felhasznalonev`= @fnev AND `jelszo`= @jelszo;";
+            Program.sql.CommandText = "SELECT * FROM `user` WHERE" +
+                " `felhasznalonev`= @fnev AND `jelszo`= @jelszo;";
 
             Program.sql.Parameters.Clear();
             Program.sql.Parameters.AddWithValue("@fnev", felhasznalonev);
             Program.sql.Parameters.AddWithValue("@jelszo", jelszo);
-
-            using (MySqlDataReader dr = Program.sql.ExecuteReader())
-            {
-                if (dr.FieldCount > 0)
-                {
-                    /*amennyiben létezik és helyes adatokat adott meg a felhasználó,
-                    akkor átirányitja a profil oldalra a felhasználót a program.*/
-                    this.Hide();
-                    Program.form_profil.Show();
-                }
-                else
-                {
-                    /*amennyiben nincs megfelelő adat, vagy nincsenek kitöltve a mezők,
-                                     egy felugró ablak figyelmeztet.*/
-                    DialogResult figy = MessageBox.Show("Érvénytelen felhasználónév vagy jelszó", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            
-            
+            this.Hide();
+            Program.form_profil.Show();
         }
+
+        /*using (MySqlDataReader dr = Program.sql.ExecuteReader())
+        {
+            if (dr.FieldCount > 0)
+            {
+                this.Hide();
+                Program.form_profil.Show();
+            }
+            else
+            {
+                DialogResult figy = MessageBox.Show("Érvénytelen felhasználónév vagy jelszó", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }*/
+
 
         private void kezdolapToolStripMenuItem_Click(object sender, EventArgs e)
         {

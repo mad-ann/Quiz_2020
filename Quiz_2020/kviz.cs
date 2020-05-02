@@ -8,16 +8,9 @@ namespace Quiz_2020
 {
     class Kviz
     {
-        
-
-        //kerdes adatok
         int id;
         string szoveg;
         int kategoria_id;
-
-        //valasz adatok
-        
-       
         List<Kerdes> kerdesek = new List<Kerdes>();
         
         public int Id { get => id; set => id = value; }
@@ -25,7 +18,5 @@ namespace Quiz_2020
         public int Kategoria_id { get => kategoria_id; set => kategoria_id = value; }
        
         public List<Kerdes> Kerdesek { get => kerdesek; set => kerdesek = value; }
-
-        
     }
 }
